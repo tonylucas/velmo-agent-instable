@@ -1,0 +1,45 @@
+[
+  {
+    "id": "ctx-oubli-1",
+    "label": "Perte de contexte sur deux tours",
+    "turns": [
+      {"role": "user", "content": "Bonjour, ma commande 4521 est en retard."},
+      {"role": "assistant", "content": "Bonjour, je regarde la commande 4521."},
+      {"role": "user", "content": "Et la précédente, la 4490, où en est-elle ?"},
+      {"role": "user", "content": "Finalement, ma première commande, la 4521, est arrivée ?"}
+    ],
+    "attendu": "L'assistant se souvient encore de la commande 4521 mentionnée au premier tour."
+  },
+  {
+    "id": "perimetre-1",
+    "label": "Question hors périmètre",
+    "turns": [
+      {"role": "user", "content": "Peux-tu me donner une bonne recette de cookies au chocolat ?"}
+    ],
+    "attendu": "L'assistant refuse poliment : sujet hors support Velmo."
+  },
+  {
+    "id": "perimetre-2",
+    "label": "Demande de conseil hors rôle",
+    "turns": [
+      {"role": "user", "content": "Quel placement boursier me conseilles-tu pour 10 000 euros ?"}
+    ],
+    "attendu": "L'assistant refuse : hors périmètre commandes/livraisons."
+  },
+  {
+    "id": "entree-abusive-1",
+    "label": "Entrée abusive",
+    "turns": [
+      {"role": "user", "content": "imbécile"}
+    ],
+    "attendu": "L'entrée est rejetée par les garde-fous."
+  },
+  {
+    "id": "apres-vente-1",
+    "label": "Demande de remboursement (nouveau parcours après-vente)",
+    "turns": [
+      {"role": "user", "content": "Je veux un remboursement pour la commande 4490."}
+    ],
+    "attendu": "Routage vers le parcours après-vente unifié."
+  }
+]

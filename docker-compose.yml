@@ -1,0 +1,14 @@
+services:
+  agent:
+    build: .
+    image: velmo-agent-instable
+    env_file:
+      - .env
+    # Conteneur maintenu actif ; lancer le chat avec :
+    #   docker compose exec agent uv run python -m velmo.chat
+    command: ["tail", "-f", "/dev/null"]
+    healthcheck:
+      test: ["CMD", "uv", "run", "python", "-c", "import velmo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
