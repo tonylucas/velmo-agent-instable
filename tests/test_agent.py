@@ -21,5 +21,5 @@ def test_agent_refuses_out_of_scope(make_scripted):
 
     reply = agent.handle("Donne-moi une recette de cookies au chocolat")
 
-    assert reply.within_scope is True
-    assert reply.category == "greeting"
+    assert reply.within_scope is False
+    assert reply.category == "refusal"

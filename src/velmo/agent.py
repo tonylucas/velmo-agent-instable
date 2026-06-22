@@ -48,6 +48,9 @@ class VelmoAgent:
         if refusal is not None:
             return refusal
 
+        if not is_in_scope(user_message):
+            return AgentReply(message=REFUSAL_MESSAGE, category="refusal", within_scope=False)
+
         intent = classify(user_message)
         system = build_system_prompt(self.persona)
         answer = self.llm.complete(system, self.memory.history(), user_message)
