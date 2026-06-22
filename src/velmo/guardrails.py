@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel
 
 # Termes déclenchant un refus d'entrée (contenu hors politique / abusif).
@@ -30,5 +32,5 @@ class AgentReply(BaseModel):
     """Réponse structurée de l'assistant."""
 
     message: str
-    category: str
+    category: Literal["greeting", "order_status", "delivery", "after_sales", "refusal"]
     within_scope: bool
