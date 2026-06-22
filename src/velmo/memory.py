@@ -14,7 +14,7 @@ class ConversationMemory:
     `window` borne le nombre de tours réinjectés dans le prompt du modèle.
     """
 
-    window: int = 8
+    window: int = 16
     _turns: list[Turn] = field(default_factory=list)
 
     def record(self, role: str, content: str) -> None:
@@ -22,7 +22,7 @@ class ConversationMemory:
         self._turns.append((role, content))
 
     def history(self) -> list[Turn]:
-        """Renvoie les tours à réinjecter dans le prompt (bornés par `window`)."""
+        """Renvoie les derniers tours à réinjecter dans le prompt (bornés par `window`)."""
         return self._turns[-self.window :]
 
     def clear(self) -> None:
