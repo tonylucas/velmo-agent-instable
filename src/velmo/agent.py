@@ -48,7 +48,7 @@ class VelmoAgent:
 
         intent = classify(user_message)
         system = build_system_prompt(self.persona)
-        answer = self.llm.complete(system, [], user_message)
+        answer = self.llm.complete(system, self.memory.history(), user_message)
 
         self.memory.record("user", user_message)
         self.memory.record("assistant", answer)
