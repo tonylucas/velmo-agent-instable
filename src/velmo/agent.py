@@ -14,8 +14,7 @@ _CATEGORY_BY_INTENT = {
     Intent.GREETING: "greeting",
     Intent.ORDER_STATUS: "order_status",
     Intent.DELIVERY: "delivery",
-    Intent.RETURN: "after_sales",
-    Intent.REFUND: "after_sales",
+    Intent.AFTER_SALES: "after_sales"
 }
 
 REFUSAL_MESSAGE = (
