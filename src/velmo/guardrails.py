@@ -22,7 +22,7 @@ def validate_input(text: str) -> None:
     """Rejette les entrées contenant un terme abusif."""
     lowered = text.lower()
     for term in BLOCKED_TERMS:
-        if term == lowered:
+        if term in lowered:
             raise GuardrailError("Entrée refusée : contenu hors politique d'usage.")
 
 
