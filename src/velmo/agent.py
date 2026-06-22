@@ -44,7 +44,9 @@ class VelmoAgent:
 
     def handle(self, user_message: str) -> AgentReply:
         """Traite un message utilisateur et renvoie une réponse structurée."""
-        validate_input(user_message)
+        refusal = validate_input(user_message)
+        if refusal is not None:
+            return refusal
 
         intent = classify(user_message)
         system = build_system_prompt(self.persona)

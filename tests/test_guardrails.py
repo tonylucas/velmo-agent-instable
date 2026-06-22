@@ -1,16 +1,18 @@
 import pytest
 from pydantic import ValidationError
 
-from velmo.guardrails import AgentReply, GuardrailError, validate_input
+from velmo.guardrails import AgentReply, validate_input
 
 
 def test_validate_input_rejects_abusive_message():
-    with pytest.raises(GuardrailError):
-        validate_input("Mais tu es vraiment un imbécile, ce service !")
+    reply = validate_input("Mais tu es vraiment un imbécile, ce service !")
+    assert reply is not None
+    assert reply.category == "refusal"
+    assert reply.within_scope is False
 
 
 def test_validate_input_accepts_normal_message():
-    validate_input("Bonjour, où en est ma commande 4521 ?")
+    assert validate_input("Bonjour, où en est ma commande 4521 ?") is None
 
 
 def test_reply_accepts_known_category():

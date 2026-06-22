@@ -15,17 +15,21 @@ BLOCKED_TERMS = {
     "ferme-la",
 }
 
+_REFUSAL_MESSAGE = (
+    "Je ne suis pas en mesure de répondre à ce message. "
+    "Je reste à votre disposition pour toute question sur vos commandes ou livraisons Velmo."
+)
 
-class GuardrailError(ValueError):
-    """Levée quand une entrée viole la politique d'usage."""
 
-
-def validate_input(text: str) -> None:
-    """Rejette les entrées contenant un terme abusif."""
+def validate_input(text: str) -> AgentReply | None:
+    """Retourne un AgentReply de refus poli si l'entrée contient un terme abusif, None sinon."""
     lowered = text.lower()
     for term in BLOCKED_TERMS:
         if term in lowered:
-            raise GuardrailError("Entrée refusée : contenu hors politique d'usage.")
+            return AgentReply(
+                message=_REFUSAL_MESSAGE, category="refusal", within_scope=False
+            )
+    return None
 
 
 class AgentReply(BaseModel):
