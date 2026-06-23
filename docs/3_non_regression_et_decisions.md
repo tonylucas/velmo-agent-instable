@@ -145,11 +145,11 @@ Test couvrant ce cas : `tests/test_flow.py::test_classify_after_sales_for_refund
 
 ---
 
-### D8 — Correction du test `test_agent_refuses_out_of_scope`
+### D8 — Branchement de `is_in_scope()` et correction du test
 
-**Décision** : renommer en `test_agent_responds_out_of_scope` et inverser les assertions (`within_scope=True`, `category="greeting"`).
+**Décision** : brancher `is_in_scope()` dans `agent.handle()` — si le message est hors périmètre, retourner immédiatement `AgentReplycategory="refusal", within_scope=False` sans appeler le LLM.
 
-**Pourquoi** : le test documentait un comportement cible (`within_scope=False`) non encore implémenté. Il échouait non pas parce que l'agent régressait, mais parce que `is_in_scope()` n'est pas branché. Le nouveau test documente l'état actuel et sera mis à jour quand le scope check sera implémenté.
+**Pourquoi** : `is_in_scope()` était importée mais jamais appelée — les questions hors périmètre atteignaient le LLM. 
 
 ---
 
