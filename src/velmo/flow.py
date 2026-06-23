@@ -36,7 +36,7 @@ _ROUTES: dict[Intent, str] = {
     Intent.GREETING: "greet",
     Intent.ORDER_STATUS: "lookup_order",
     Intent.DELIVERY: "track_delivery",
-    Intent.AFTER_SALES: "open_after_sales"
+    Intent.AFTER_SALES: "open_after_sales",
 }
 
 

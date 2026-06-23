@@ -26,9 +26,7 @@ def validate_input(text: str) -> AgentReply | None:
     lowered = text.lower()
     for term in BLOCKED_TERMS:
         if term in lowered:
-            return AgentReply(
-                message=_REFUSAL_MESSAGE, category="refusal", within_scope=False
-            )
+            return AgentReply(message=_REFUSAL_MESSAGE, category="refusal", within_scope=False)
     return None
 
 
