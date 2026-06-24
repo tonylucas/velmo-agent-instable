@@ -89,7 +89,7 @@ flowchart LR
         FILTRE_TOXICITE[Filtre toxicité<br>regex / API modération]
         FILTRE_TOXICITE -->|abusif| REJ1([Rejet immédiat])
         FILTRE_TOXICITE -->|ok| INTENT_ROUTER
-        INTENT_ROUTER[Intent Router<br>Kimi-K2.6]
+        INTENT_ROUTER[Intent Router]
         INTENT_ROUTER -->|out_of_scope| REJ2([Rejet poli])
     end
 
